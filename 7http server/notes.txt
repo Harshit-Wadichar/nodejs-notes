@@ -1,0 +1,51 @@
+Absolutely, Ankit! Let me explain each term in simple words:
+
+### **1. HTTP Module**
+- In Node.js, the **HTTP module** is a built-in feature that helps us create servers and handle requests (like a browser asking for a webpage) and responses (like sending back the webpage).
+- Think of it as the toolkit that makes it easy to send and receive data over the internet.
+
+### **2. Port Number**
+- A **port number** is like a "door" on your computer that allows programs to communicate. Every server needs a port to "listen" for incoming requests.
+- For example, web browsers usually use port `80` for websites. In Node.js, we can choose a specific port (like 3000) for our server to listen for connections.
+
+### **3. `createServer` Function**
+- The `createServer` function (from the HTTP module) is used to create a server in Node.js. This server listens for requests and decides how to respond.
+- Imagine you’re running a shop. When customers (requests) arrive, you need a server (shopkeeper) to respond (like serving them products or information).
+
+Here’s how it works:
+```javascript
+const http = require('http'); // Importing the HTTP module
+
+const server = http.createServer((req, res) => {
+  res.write('Hello, world!'); // Writing a response
+  res.end(); // Ending the response
+});
+```
+In this example, a basic server is created that sends "Hello, world!" whenever it receives a request.
+
+### **4. `listen` Function**
+- The `listen` function tells the server to start listening on a specific port. It’s like saying, "Hey server, start waiting for requests on door number (port) 3000."
+  
+Example:
+```javascript
+server.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+```
+This tells the server to listen on port `3000` and shows a message when it’s ready.
+
+---
+
+### **Simple Summary**
+- **HTTP Module:** The toolbox for creating servers and handling web communication.
+- **Port Number:** The door your server listens on for requests.
+- **`createServer`:** Creates a server to handle requests and send responses.
+- **`listen`:** Starts the server and tells it which port to use.
+
+Think of it like running a restaurant:
+- The **HTTP module** gives you the tools to cook and serve food.
+- The **port number** is the door where customers enter.
+- The **server** (via `createServer`) is the chef who prepares the food.
+- The **listen function** ensures the restaurant is open and ready to serve customers at the right door.
+
+Let me know if you'd like to build on this or try an example together! 😊

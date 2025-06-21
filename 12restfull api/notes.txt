@@ -1,0 +1,42 @@
+the rules of restfull api's according to video are:
+1)the api's works in server-client architecture
+2)a developer should respect the http methods
+
+1)what is rest api?
+=>
+1. **API**: Think of an API (Application Programming Interface) as a way for different software to talk to each other. It's like a waiter in a restaurant taking your order (data) to the kitchen (server) and bringing your food (response) back.
+
+2. **REST**: REST (Representational State Transfer) is a design style for building these APIs. It sets simple rules for how data should be sent and received over the internet.
+
+3. **Node.js**: Node.js is a platform where you can write server-side code using JavaScript.
+
+So, a **REST API in Node.js** is a system you create to let apps or websites talk to a server you build in Node.js. For example, if you wanted to make a weather app, your REST API might take a request like, "What's the weather in Rajura?" and send back a response with the data, like "It's 25°C and clear."
+
+
+2)what are the rules of rest API?
+=>
+1. **Use Resources**: Everything in a REST API is treated as a "resource" (like users, products, or posts). Each resource has a unique URL to identify it. For example, `https://example.com/users` could represent a list of users.
+
+2. **Use HTTP Methods**: REST APIs use standard HTTP methods to perform actions:
+   - **GET**: To fetch data (e.g., get a list of users).
+   - **POST**: To create something new (e.g., add a new user).
+   - **PUT**: To update existing data (e.g., edit user details).
+   - **DELETE**: To remove data (e.g., delete a user).
+
+3. **Stateless**: Each request must contain all the necessary information because the server doesn't remember previous requests. It's like introducing yourself every time you talk to someone!
+
+4. **Send Data in a Standard Format**: Most REST APIs use JSON (a lightweight data format) to exchange information between the client (user) and server. For example:
+   ```json
+   {
+     "name": "Ankit",
+     "age": 25
+   }
+   ```
+
+5. **Use Proper Status Codes**: The server sends back meaningful HTTP status codes with responses. For example:
+   - `200 OK`: Everything worked perfectly.
+   - `201 Created`: A new resource was successfully created.
+   - `404 Not Found`: The requested resource doesn’t exist.
+   - `500 Internal Server Error`: Something went wrong on the server.
+
+6. **Keep It Simple and Consistent**: REST APIs should be easy to understand and follow predictable patterns.

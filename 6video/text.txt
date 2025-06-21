@@ -1,0 +1,23 @@
+### **Blocking vs Non-Blocking Processes**
+- **Blocking Process:** When a process is "blocking," it means that it stops everything else and waits until it completes before moving on. For example, if you're reading a book and someone asks you a question, you might say, "Wait, let me finish this page first." Only after finishing the page will you respond. Everything else has to wait!
+  
+- **Non-Blocking Process:** This process, on the other hand, doesn’t stop everything else. It handles tasks in the background and allows other tasks to keep going. Using the same example, if you're reading a book and someone asks you a question, you can pause reading, answer them, and then return to your book. Things continue smoothly without long delays.
+
+### **Key Difference**
+- Blocking processes make other tasks wait until they’re done.
+- Non-blocking processes allow other tasks to continue without waiting.
+
+### **How Node.js Handles Blocking and Non-Blocking**
+Node.js is designed to handle **non-blocking processes efficiently**, making it very fast and scalable. Here’s how it works:
+
+1. **Event Loop**:
+   - The event loop is the heart of Node.js. It's like a manager that keeps track of all tasks. It ensures that tasks are executed one at a time, but if a task takes time (like reading a file or fetching data from the internet), it doesn’t block other tasks. Instead, it keeps checking for tasks that are ready to be processed.
+   - For example, if Node.js starts reading a file, the event loop will ask the system to handle the file-reading in the background. Meanwhile, the event loop keeps processing other tasks, like handling user input or serving a web request.
+
+2. **Thread Pool**:
+   - Some tasks, like file I/O or heavy computations, need to run separately because they take time. These tasks are sent to the **thread pool**, which is a set of worker threads that handle such operations. While the thread pool works on these tasks, the event loop continues doing its job, ensuring Node.js never gets "stuck."
+
+### **In Simple Terms**
+- Think of Node.js as a restaurant: the **event loop** is the manager who takes orders (tasks) and delegates them. Some tasks (like cooking) are sent to chefs in the kitchen (thread pool). While the cooking happens, the manager keeps taking new orders instead of waiting for the food to finish.
+
+I hope that clears things up! Let me know if you'd like to dive deeper into any part. 😊

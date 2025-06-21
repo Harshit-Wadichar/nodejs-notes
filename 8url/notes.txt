@@ -1,0 +1,65 @@
+### **What is a URL?**
+A URL (Uniform Resource Locator) is like the "address" of a resource on the internet. Just like how you need an address to find someone's house, a URL helps you find web pages or other resources.
+
+---
+
+### **Parts of a URL**
+Here’s an example URL to understand its parts:
+```
+https://www.example.com/about?name=Ankit&age=25
+```
+
+1. **Protocol** (`https://`):  
+   - This tells the browser how to communicate with the server. Examples are `http`, `https`, or `ftp`.
+   - In our example, the protocol is `https` (secure communication).
+
+2. **Domain** (`www.example.com`):  
+   - This is the website's "name" or where the server lives. It’s like the main part of the address. Common domains include `.com`, `.org`, `.net`, etc.
+   - Here, the domain is `www.example.com`.
+
+3. **Path** (`/about`):  
+   - The path specifies a particular page or resource on the website.
+   - In this case, `/about` could be a page that provides information about something.
+
+4. **Query** (`?name=Ankit&age=25`):  
+   - This is optional and usually contains extra data passed to the server.
+   - It starts with `?`, and each key-value pair is separated by `&`.  
+     For example:
+     - `name=Ankit` means the "name" parameter is set to "Ankit".
+     - `age=25` means the "age" parameter is set to "25".
+
+---
+
+### **URL Module in Node.js**
+Node.js has a built-in `url` module, which helps us work with URLs easily.
+
+#### Key Features:
+1. **Parsing a URL**:  
+   - It can break a URL into its components (protocol, domain, path, query, etc.).
+   - Example:
+     ```javascript
+     const url = require('url');
+     const myUrl = new URL('https://www.example.com/about?name=Ankit&age=25');
+
+     console.log(myUrl.protocol); // 'https:'
+     console.log(myUrl.hostname); // 'www.example.com'
+     console.log(myUrl.pathname); // '/about'
+     console.log(myUrl.search);   // '?name=Ankit&age=25'
+     ```
+
+2. **Manipulating URLs**:  
+   - You can update or create URLs dynamically using the `URL` class.
+     ```javascript
+     myUrl.searchParams.append('city', 'Rajura');
+     console.log(myUrl.href); // 'https://www.example.com/about?name=Ankit&age=25&city=Rajura'
+     ```
+
+---
+
+### **Why is it Useful?**
+- **Easier Handling of Query Strings**: Extract or add parameters without manual string manipulation.
+- **Access Specific URL Parts**: No need to manually split strings to get the path or domain.
+- **Enhanced Compatibility**: Works seamlessly with modern web applications.
+
+---
+

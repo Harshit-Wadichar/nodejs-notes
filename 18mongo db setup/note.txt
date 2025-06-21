@@ -1,0 +1,20 @@
+### **What is MongoDB?**
+MongoDB is a **NoSQL database**, which means it stores data in a flexible, document-based format instead of tables like SQL databases. It is useful for handling **large amounts of unstructured or semi-structured data**.
+
+---
+
+### **Common MongoDB Terms (Explained Simply)**
+
+1. **Database** – A **container** for data. Similar to a folder that holds files.
+2. **Collection** – A **group of documents** inside a database. Similar to a table in SQL.
+3. **Document** – A single **data entry** stored in JSON-like format (key-value pairs).
+4. **Field** – A **specific piece of data** inside a document. Like a column in SQL.
+5. **_id** – A unique **identifier** for each document (automatically created).
+6. **Schema** – The **structure of data** (but in MongoDB, it’s flexible!).
+7. **Index** – A way to **speed up searches** in a collection.
+8. **Query** – A **request** to get specific data from the database.
+9. **Aggregation** – A method to **process and analyze** data (like reports).
+10. **Replication** – Creating **copies** of the database for backup and availability.
+11. **Sharding** – **Splitting large data** into smaller parts for better performance.
+
+Would you like examples for any of these? 😊

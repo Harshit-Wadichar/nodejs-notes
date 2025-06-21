@@ -1,0 +1,40 @@
+In HTTP, headers are pieces of information that are sent along with a request or response. Think of them as labels or tags that provide extra details about the communication between the client (like a browser) and the server. For example, headers can specify the type of content being sent, the language, or authentication details.
+
+In Node.js, you can access and set HTTP headers using the `http` module or frameworks like Express.
+
+Here’s a simple example to show how headers work in Node.js:
+
+```javascript
+const http = require('http');
+
+// Create a server
+const server = http.createServer((req, res) => {
+  // Access headers from the client
+  console.log('Request Headers:', req.headers);
+
+  // Set a response header
+  res.setHeader('Content-Type', 'text/plain');
+  
+  // Send a response
+  res.end('Hello! This is a response with headers.');
+});
+
+// Start the server
+server.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+```
+
+### Explanation:
+1. **Accessing Headers**:
+   - `req.headers`: This retrieves the headers sent by the client. For example, it might include details about the browser (`User-Agent`) or accepted languages (`Accept-Language`).
+
+2. **Setting Headers**:
+   - `res.setHeader('Content-Type', 'text/plain')`: This sets a response header to indicate the type of content being sent (in this case, plain text).
+
+3. **Sending a Response**:
+   - After setting the header, we send a response using `res.end()`.
+
+When you run this code and visit `http://localhost:3000` in your browser, the server will send a plain text response, and you’ll see the client’s request headers printed in the terminal.
+
+Headers are super useful in HTTP communication, as they control how data is exchanged! Let me know if you'd like a deeper dive into this!

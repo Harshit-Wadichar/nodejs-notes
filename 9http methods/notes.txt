@@ -1,0 +1,55 @@
+http methods are as follows:
+
+1)Get:
+i)get method is used to get some data from the web browser
+ii)by default the web browser is only used to perform get method
+
+2)post:
+i)post method is used to send data or to mutate the data in the server.
+
+3)put:
+put method is used to add the data in the database of server
+
+4)patch:
+patch method is used to change the data which was already presented on the database
+
+5)delete:
+delete method is used to delete the already present data inside of the server
+
+copilot definition=>
+
+---
+
+### Corrected Explanation of HTTP Methods:
+1. **GET**:  
+   - **What it does:** This method is used to request or retrieve data from the server. For example, when you type a URL in your browser, it sends a `GET` request to fetch the web page.  
+   - **Clarification:** By default, web browsers typically use `GET` requests for loading pages, but web browsers can perform other methods too (like `POST` through forms).
+
+---
+
+2. **POST**:  
+   - **What it does:** This method is used to send data to the server. It's commonly used for operations like submitting forms or uploading files.  
+   - **Clarification:** It is not limited to mutating data. While it's often used to create or modify resources, the exact operation depends on how the server handles the request.
+
+---
+
+3. **PUT**:  
+   - **What it does:** This method is used to completely replace or create a resource on the server. For instance, updating a user profile might use a `PUT` request to overwrite the existing data with the new one.  
+   - **Clarification:** It does not directly "add to the database." Instead, it updates or replaces data entirely.
+
+---
+
+4. **PATCH**:  
+   - **What it does:** This method is used to partially update a resource on the server. For example, if only one field in a database needs to be updated (e.g., changing just the email address for a user profile), `PATCH` is often used.  
+   - **Clarification:** This is for partial modifications, not wholesale changes like `PUT`.
+
+---
+
+5. **DELETE**:  
+   - **What it does:** This method is used to remove a resource from the server, typically from a database.  
+   - **Clarification:** Your definition is correct here!
+
+---
+
+### Final Notes:
+Your original paragraph captured the general ideas of the HTTP methods, but I’ve refined the language and addressed some misconceptions. Let me know if you’d like more examples or further clarifications! 🚀

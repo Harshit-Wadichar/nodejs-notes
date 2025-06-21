@@ -1,0 +1,52 @@
+In Node.js, the `fs` (File System) module allows you to interact with the file system. The primary difference between synchronous (sync) and asynchronous (non-sync) functions in the `fs` module lies in how they handle execution and blocking:
+
+### Synchronous (`fs.*Sync` methods):
+1. **Blocking Execution**: Synchronous methods block the execution of code. This means no other code can run until the current file operation is completed.
+2. **Usage**: These methods are simpler to write but can significantly impact performance, especially in applications that require high concurrency.
+   - Example: `fs.readFileSync()`, `fs.writeFileSync()`
+
+   ```javascript
+   const fs = require('fs');
+   const data = fs.readFileSync('example.txt', 'utf8'); // Code execution is paused here.
+   console.log(data);
+   ```
+
+3. **Use Cases**: Best suited for scripts or small utilities where performance and concurrency are not critical.
+
+---
+
+### Asynchronous (Non-sync) functions:
+1. **Non-blocking Execution**: Asynchronous methods do not block the event loop. Instead, they take a callback (or return a `Promise`) and allow other code to execute while the file operation is being processed.
+2. **Usage**: These methods are more complex but enable better performance in concurrent applications.
+   - Example with Callback: `fs.readFile()`
+   - Example with Promises: `fs.promises.readFile()`
+
+   ```javascript
+   const fs = require('fs');
+   // Using callback
+   fs.readFile('example.txt', 'utf8', (err, data) => {
+       if (err) throw err;
+       console.log(data); // This runs after the file is read.
+   });
+
+   // Using Promises
+   const fsPromises = require('fs').promises;
+   fsPromises.readFile('example.txt', 'utf8')
+       .then(data => console.log(data))
+       .catch(err => console.error(err));
+   ```
+
+3. **Use Cases**: Essential for server-side applications where multiple users or tasks need to be handled simultaneously.
+
+---
+
+### Summary of Key Differences:
+
+| Feature              | Synchronous (`Sync`)             | Asynchronous (`Non-sync`)       |
+|----------------------|-----------------------------------|----------------------------------|
+| **Execution**        | Blocking                         | Non-blocking                    |
+| **Concurrency**      | Poor                             | Excellent                       |
+| **Complexity**       | Easier to write                  | More complex (callbacks/Promises) |
+| **Use Case**         | Small utilities, quick scripts   | High-performance applications   |
+
+Let me know if you'd like further clarification or examples! 🚀
