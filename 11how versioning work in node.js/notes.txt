@@ -1,0 +1,23 @@
+the version of express js is denoted as follows:
+for example my current node.js version
+is : ^4.18.2
+
+then here
+3)third part which is 2 here denotes minor fixes(optional to updated)
+
+2)second part which is denoted as 18 in the above version denotes recommended changes or 
+fixes(mostly security changes or fixes)
+
+1)first part which is denoted as 4 here denotes the major update or release of the express
+version(changing this can cause errors in the existing code)
+
+to download express module of any specific version we can write on terminal as follows:
+npm install express@4.18.2
+
+this is carrot symbol = ^
+
+^ sign infront of any no. says that we can not update from this version or no.
+
+for example ^4(carrot symbol infront of 4) determines that the updates will be 
+automatically downloaded upto 4th version and if 5th version is already released 
+then it will not update to 5th version 

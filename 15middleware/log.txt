@@ -1,0 +1,3 @@
+1742736403281: GET /api/users/1
+1742736558635: GET /api/users/3 
+1742736670895: PATCH /api/users/2 

@@ -1,0 +1,11 @@
+new request recieved at time 1742473223590 by the url = / and method: GET
+new request recieved at time 1742473226267 by the url = / and method: GET
+new request recieved at time 1742473227497 by the url = / and method: GET
+new request recieved at time 1742473583740 by the url = /signup and method: GET
+new request recieved at time 1742473596823 by the url = /signup?method===GET and method: GET
+new request recieved at time 1742473603402 by the url = /signup?method===GET and method: GET
+new request recieved at time 1742473666169 by the url = /signup?method===GET and method: GET
+new request recieved at time 1742473666511 by the url = /signup?method===GET and method: GET
+new request recieved at time 1742473674610 by the url = /signup?method===post and method: GET
+new request recieved at time 1742473680253 by the url = /signup?method===post and method: GET
+new request recieved at time 1742473698842 by the url = /signup and method: GET

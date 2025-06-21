@@ -1,0 +1,20 @@
+Jab hame kisi dusri file ke functions ya variables use karne ho ek alag file me to,
+hame require, module.exports ya exports.(function_name) ka use karna padta hai.
+
+1) require(); function se hm ye decide karte hai ki kis file se hame functions aur 
+   variables use karne hai
+   for example:-
+   const math = require("./math.js")
+   is function me hame ye pata chal raha hai ki hame sare variables aur functions use
+   karne hai mathh.js file se, aur ham ye sare functions aur variables use karenge math
+   variable me store karke
+
+   note:- hamare folder me agar kisi file ko use karna hai to ye ./ file name ke pahle lagana hoga
+
+2) module.export se ham ye define karte hai ki hame konse variables aur functions ek
+   file ke use karne hai.
+   for example:-
+   module.exports = { subFunction : sub,
+                      addFunction : add}
+   hm is upar ke function me ye define kar rahe hai ki hame konse function kis nam se
+   require karne hai
