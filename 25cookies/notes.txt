@@ -1,0 +1,26 @@
+**Cookies in Browsers**  
+Cookies are like small digital notes a website leaves in your browser to remember you. For example, when you log into a site like Facebook, a cookie saves your login info so you don’t have to type it again every time you revisit.
+
+---
+
+**Two Main Authentication Patterns**  
+
+1. **Authentication via Cookies**  
+   - **How it works**: After you log in, the server sends a cookie to your browser. Your browser automatically attaches this cookie to every request to that website.  
+   - **Example**:  
+     - You log into Gmail → Google’s server sends a cookie saying, "This is Alice."  
+     - When you check your inbox, your browser sends the cookie back. Google checks it and shows *your* emails.  
+
+2. **Authentication via Headers**  
+   - **How it works**: After logging in, the server gives you a token (like a digital key). You manually add this token to the "Authorization" header of every request.  
+   - **Example**:  
+     - You log into a weather app → The server sends a token like "ABC123".  
+     - To check the weather, your app adds `Authorization: Bearer ABC123` to the request. The server verifies the token and sends the data.  
+
+---
+
+**Simple Comparison**  
+- **Cookies**: Like a concert wristband. Once you get it, security checks it automatically at every gate.  
+- **Headers**: Like a secret password. You say "Bearer ABC123" each time you ask for something.  
+
+Both methods tell the server, "Hey, it’s me! Let me in!" but they work slightly differently. 🍪🔑

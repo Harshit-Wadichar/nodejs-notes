@@ -1,0 +1,45 @@
+**Streams in Node.js:**  
+Streams are like pipelines that let you handle data piece by piece, instead of all at once. Imagine filling a bathtub with a bucket (loading the whole file into memory) vs. using a hose (streams). Streams are better for large data because they use less memory and are faster. There are four types:
+
+1. **Readable Streams**: For reading data (e.g., reading a file).  
+2. **Writable Streams**: For writing data (e.g., saving to a file).  
+3. **Duplex Streams**: Can read *and* write (e.g., a network socket).  
+4. **Transform Streams**: Modify data while passing it (e.g., compressing data).
+
+**Example:**  
+```javascript
+const fs = require('fs');
+// Read a file in chunks and write to a new file
+fs.createReadStream('bigfile.txt')
+  .pipe(fs.createWriteStream('copy.txt'));
+```
+
+---
+
+**zlib Module in Node.js:**  
+The `zlib` module compresses or decompresses data (like turning a big file into a smaller `.zip` file). It uses algorithms like `gzip` or `deflate` to shrink data, making it faster to send over the internet or save disk space.
+
+**How it works with streams:**  
+You can pipe data through `zlib` to compress/decompress on the fly:  
+```javascript
+const zlib = require('zlib');
+const fs = require('fs');
+
+// Compress a file using streams
+fs.createReadStream('file.txt')
+  .pipe(zlib.createGzip()) // Compress the data chunk by chunk
+  .pipe(fs.createWriteStream('file.txt.gz'));
+```
+
+**Key Functions:**  
+- `zlib.createGzip()`: Compress data.  
+- `zlib.createGunzip()`: Decompress data.  
+- Similar methods for `deflate`/`inflate` algorithms.
+
+**Why use zlib?**  
+- Save storage space.  
+- Faster data transfer over networks.  
+- Works seamlessly with streams (no memory overload!).  
+
+**Simple analogy:**  
+Think of `zlib` as a magic straw that sucks in data, shrinks it, and sends it out—all while it’s still flowing through the hose (stream). 🎈➡️📦

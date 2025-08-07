@@ -1,0 +1,104 @@
+The **Cluster Module** in Node.js allows you to create multiple instances of your application (called "worker processes") to utilize all CPU cores on your machine. Since Node.js runs on a single thread by default, the cluster module helps improve performance and handle more traffic by distributing the workload across multiple cores.
+
+---
+
+### **Explanation of the Code**
+
+#### **1. Import Modules**
+```javascript
+const cluster = require('node:cluster');
+const os = require('os');
+const express = require('express');
+```
+- `cluster`: Used to create worker processes.
+- `os`: Provides info about the operating system (like CPU cores).
+- `express`: A web framework to create a server.
+
+---
+
+#### **2. Get Total CPU Cores**
+```javascript
+const totalCpus = os.cpus().length;
+```
+- `os.cpus().length` returns the number of CPU cores on your machine (e.g., 4 cores, 8 cores).
+
+---
+
+#### **3. Check if the Process is the Primary Process**
+```javascript
+if (cluster.isPrimary) {
+  // Primary process code
+} else {
+  // Worker process code
+}
+```
+- The **primary process** is the main process. It acts as a manager and creates worker processes.
+- The **worker processes** are the child processes that run your actual server code.
+
+---
+
+#### **4. Primary Process: Create Workers**
+```javascript
+if (cluster.isPrimary) {
+  for (let i = 0; i < totalCpus; i++) {
+    cluster.fork(); // Create a worker for each CPU core
+    console.log(i);
+  }
+}
+```
+- The primary process loops over each CPU core and creates a worker using `cluster.fork()`.
+- Example: If you have 4 CPU cores, it creates 4 workers.
+- `console.log(i)` logs the loop index (0, 1, 2, 3 for 4 cores).
+
+---
+
+#### **5. Worker Process: Start Express Server**
+```javascript
+else {
+  const app = express();
+  const PORT = 8000;
+
+  app.get('/', (req, res) => {
+    return res.json({
+      message: `Hello from express Server! ${process.pid}`
+    });
+  });
+
+  app.listen(PORT, () => { 
+    console.log("server started"); 
+  });  
+}
+```
+- Each worker process runs this code.
+- An Express server is created and listens on port `8000`.
+- When you visit `http://localhost:8000`, it sends a response with a message containing the **worker's process ID** (`process.pid`).
+- Since each worker has a unique ID, you’ll see different IDs in responses, proving different workers handle requests.
+
+---
+
+### **How It Works**
+1. **Primary Process**: 
+   - Creates one worker for each CPU core.
+   - Example: 4 cores → 4 workers.
+   - The primary process **does not run your server code**; it only manages workers.
+
+2. **Worker Processes**:
+   - Each worker runs the Express server on the same port (`8000`).
+   - The OS handles distributing incoming requests to workers (load balancing).
+
+---
+
+### **Key Benefits**
+1. **Performance**: Uses all CPU cores (instead of just one).
+2. **Scalability**: Handles more simultaneous requests.
+3. **Fault Tolerance**: If one worker crashes, others keep running.
+
+---
+
+### **Example Output**
+If you open `http://localhost:8000` in multiple tabs, you’ll see responses like:
+```json
+{ "message": "Hello from express Server! 1234" }
+{ "message": "Hello from express Server! 5678" }
+```
+Different `process.pid` values indicate different workers handled the requests.

@@ -1,0 +1,13 @@
+how to connect my discord server to the discord port from my discord developer portal
+
+To connect your Discord server to the Discord Developer Portal, you'll need to create a bot and invite it to your server. Here’s a general guide:
+
+1. **Go to the Discord Developer Portal**: Visit [Discord Developer Portal](https://discord.com/developers) and log in.
+2. **Create a New Application**: Click on "New Application" and give it a name.
+3. **Add a Bot**: Navigate to the "Bot" section and click "Add Bot." Customize its settings.
+4. **Retrieve the Bot Token**: Copy the bot token and keep it secure.
+5. **Generate an Invite Link**: Go to the "OAuth2" section, select "Bot" as the scope, set permissions, and copy the invite link.
+6. **Invite the Bot to Your Server**: Paste the invite link in your browser, select your server, and authorize the bot.
+7. **Connect the Bot to Your Code**: Use the bot token in your code to interact with the Discord API.
+
+For a step-by-step video tutorial, check out [this guide](https://www.youtube.com/watch?v=ibtXXoMxaho) or [this one](https://www.youtube.com/watch?v=zrNloK9b1ro). Let me know if you need more details! 🚀

@@ -1,0 +1,141 @@
+To view the structure of collections (schemas) in MongoDB using the command line, follow these steps. Since MongoDB is schema-less by default (documents can have flexible structures), you’ll infer the schema by inspecting existing documents or validation rules.
+
+---
+
+### **1. Connect to MongoDB via `mongosh`**
+Open your terminal/command prompt and run:
+```bash
+mongosh
+```
+(If MongoDB is installed locally and running, this connects to `mongodb://localhost:27017`.)
+
+---
+
+### **2. List All Databases**
+```bash
+show dbs
+```
+
+---
+
+### **3. Switch to Your Database**
+```bash
+use your_database_name
+```
+Replace `your_database_name` with your actual database name.
+
+---
+
+### **4. List Collections in the Database**
+```bash
+show collections
+```
+
+---
+
+### **5. View the Schema of a Collection**
+Since MongoDB doesn’t enforce strict schemas, you can infer the schema by checking:
+- **Sample documents** in the collection.
+- **Validation rules** (if defined).
+
+#### **Option 1: View Sample Documents**
+```bash
+db.your_collection_name.find().limit(1)
+```
+This shows the first document in the collection. For example:
+```javascript
+// Output example:
+{
+  "_id": ObjectId("663d8f4e9d4b8a001a8b1a7e"),
+  "name": "John Doe",
+  "age": 30,
+  "email": "john@example.com"
+}
+```
+
+#### **Option 2: Check for Schema Validation Rules**
+If your collection has schema validation (defined using `validator`), run:
+```bash
+db.getCollectionInfos({name: "your_collection_name"})
+```
+Look for the `options.validator` field in the output.
+
+---
+
+### **6. Analyze All Fields in a Collection**
+Use the aggregation pipeline to list all unique fields and their types:
+```bash
+db.your_collection_name.aggregate([
+  { $project: { 
+    fieldNames: { $objectToArray: "$$ROOT" } 
+  }}, 
+  { $unwind: "$fieldNames" }, 
+  { $group: { 
+    _id: null, 
+    allFields: { $addToSet: "$fieldNames.k" } 
+  }}
+])
+```
+This returns all unique field names in the collection.
+
+---
+
+### **7. Check Indexes (Optional)**
+List indexes to see which fields are indexed:
+```bash
+db.your_collection_name.getIndexes()
+```
+
+---
+
+### **Example Workflow**
+1. Connect to MongoDB:
+   ```bash
+   mongosh
+   ```
+2. Switch to the `test` database:
+   ```bash
+   use test
+   ```
+3. View documents in the `users` collection:
+   ```bash
+   db.users.find().limit(2)
+   ```
+   Output:
+   ```javascript
+   [
+     {
+       _id: ObjectId("663d8f4e9d4b8a001a8b1a7e"),
+       name: "Alice",
+       age: 25
+     },
+     {
+       _id: ObjectId("663d8f4e9d4b8a001a8b1a7f"),
+       name: "Bob",
+       email: "bob@example.com"
+     }
+   ]
+   ```
+   From this, you can infer:
+   - All documents have `_id` and `name`.
+   - Some have `age` or `email` (flexible schema).
+
+---
+
+### **Key Notes**
+- MongoDB doesn’t enforce schemas by default, so fields can vary across documents.
+- If you want strict schemas, define validation rules when creating a collection:
+  ```bash
+  db.createCollection("users", {
+    validator: {
+      $jsonSchema: {
+        bsonType: "object",
+        required: ["name", "email"],
+        properties: {
+          name: { bsonType: "string" },
+          email: { bsonType: "string" }
+        }
+      }
+    }
+  })
+  ```

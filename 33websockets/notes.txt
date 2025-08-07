@@ -1,0 +1,119 @@
+WebSockets in Node.js enable real-time, bidirectional communication between a client (e.g., a browser) and a server. Unlike HTTP (which is request-response and stateless), WebSockets maintain a persistent connection, allowing either side to send data at any time.
+
+### Key Features:
+- **Persistent Connection**: Remains open until explicitly closed.
+- **Low Latency**: Ideal for chat apps, live updates, gaming, etc.
+- **Full-Duplex**: Both client and server can send messages simultaneously.
+
+---
+
+### Example Using Node.js and the `ws` Library
+We'll create a simple WebSocket server and client.
+
+#### 1. Setup the Project
+```bash
+mkdir websocket-example
+cd websocket-example
+npm init -y
+npm install ws
+```
+
+#### 2. Server Code (`server.js`)
+```javascript
+const WebSocket = require('ws');
+
+// Create a WebSocket server on port 8080
+const wss = new WebSocket.Server({ port: 8080 });
+
+wss.on('connection', (ws) => {
+  console.log('Client connected');
+
+  // Send a welcome message to the client
+  ws.send('Welcome to the WebSocket server!');
+
+  // Listen for messages from the client
+  ws.on('message', (message) => {
+    console.log('Received:', message.toString());
+
+    // Echo the message back to the client
+    ws.send(`Hello from server, you said: "${message.toString()}"`);
+  });
+
+  // Handle client disconnection
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });
+});
+
+console.log('WebSocket server running on ws://localhost:8080');
+```
+
+#### 3. Client Code (`client.html`)
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <script>
+    const ws = new WebSocket('ws://localhost:8080');
+
+    // Connection opened
+    ws.addEventListener('open', (event) => {
+      console.log('Connected to server');
+      ws.send('Hello from client!');
+    });
+
+    // Listen for messages from the server
+    ws.addEventListener('message', (event) => {
+      console.log('Message from server:', event.data);
+    });
+
+    // Handle disconnection
+    ws.addEventListener('close', () => {
+      console.log('Disconnected from server');
+    });
+  </script>
+</body>
+</html>
+```
+
+---
+
+### How to Test
+1. **Start the Server**:
+   ```bash
+   node server.js
+   ```
+
+2. **Open `client.html`** in a browser (e.g., Chrome) and check the console:
+   - Press `F12` to open developer tools.
+   - Go to the **Console** tab.
+
+3. **Observe Communication**:
+   - The server sends a welcome message.
+   - The client sends "Hello from client!".
+   - The server echoes the message back.
+
+---
+
+### Key Concepts Explained:
+1. **WebSocket Server**:
+   - Created using `new WebSocket.Server({ port: 8080 })`.
+   - Listens for `connection` events when a client connects.
+
+2. **Client Connection**:
+   - The client uses `new WebSocket('ws://localhost:8080')` to connect.
+   - Events like `open`, `message`, and `close` are handled.
+
+3. **Sending Messages**:
+   - Use `ws.send(data)` on both client and server.
+   - Data can be strings, buffers, or other serializable types.
+
+---
+
+### Use Cases:
+- Chat applications
+- Live sports/news updates
+- Multiplayer gaming
+- Collaborative editing tools
+
+For more advanced use cases, consider libraries like `socket.io`, which provide additional features (e.g., rooms, fallbacks for older browsers).

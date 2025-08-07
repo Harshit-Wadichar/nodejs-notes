@@ -1,0 +1,83 @@
+1)schemaName.find({}):
+to find all documents in the schema
+
+2)schemaName.findById():
+to find a single document by its findById
+
+3)schemaName.findByIdAndUpdate(req.params.id,{
+      last_name: "changd",
+      }):
+to find element or document by id and change it or update its specific key value pair.
+
+4)schemaName.findByIdAndDelete(req.params.id):
+to find element or document by id and delete it.
+
+5)schemaName.create({
+    first_name: body.first_name,
+    last_name: body.last_name,
+    email: body.email,
+    gender: body.gender,
+    job_title: body.job_title,
+  }):
+to create element or document.
+
+6) **`schemaName.findOne({ key: value })`**  
+   - Finds a single document that matches the given query criteria.
+   - Example:
+     ```js
+     schemaName.findOne({ email: "test@example.com" });
+     ```
+   - Returns the first matching document or `null` if no match is found.
+
+7) **`schemaName.updateOne({ _id: req.params.id }, { $set: { key: value } })`**  
+   - Updates a single document that matches the given query.
+   - Example:
+     ```js
+     schemaName.updateOne({ _id: req.params.id }, { $set: { last_name: "Updated" } });
+     ```
+   - Only updates the first matching document.
+
+8) **`schemaName.updateMany({ key: value }, { $set: { key2: newValue } })`**  
+   - Updates multiple documents that match the given query.
+   - Example:
+     ```js
+     schemaName.updateMany({ job_title: "Engineer" }, { $set: { department: "Tech" } });
+     ```
+   - Useful for applying batch updates.
+
+9) **`schemaName.deleteOne({ key: value })`**  
+   - Deletes a single document that matches the criteria.
+   - Example:
+     ```js
+     schemaName.deleteOne({ email: "test@example.com" });
+     ```
+   - Removes only the first matching document.
+
+10) **`schemaName.deleteMany({ key: value })`**  
+    - Deletes multiple documents that match the query.
+    - Example:
+      ```js
+      schemaName.deleteMany({ department: "Old" });
+      ```
+    - Removes all matching documents.
+
+11) **`schemaName.countDocuments({ key: value })`**  
+    - Counts the number of documents that match the given filter.
+    - Example:
+      ```js
+      schemaName.countDocuments({ gender: "Male" });
+      ```
+    - Returns the total count.
+
+12) **`schemaName.aggregate([...aggregationPipeline])`**  
+    - Performs advanced queries, transformations, and aggregations.
+    - Example:
+      ```js
+      schemaName.aggregate([
+        { $match: { job_title: "Engineer" } },
+        { $group: { _id: "$department", total: { $sum: 1 } } }
+      ]);
+      ```
+    - Used for complex data analysis.
+
+Each of these functions plays a crucial role in managing MongoDB documents efficiently.
